@@ -24,9 +24,7 @@ export default function App() {
 
 
 
-	//
 	return (
-		// <div className={useSelector(s => s.ui.dark) ? 'dark' : ''}>
 		<div className="min-h-screen">
 			<Header />
 			<main className="container">
@@ -40,6 +38,5 @@ export default function App() {
 				</Routes>
 			</main>
 		</div>
-		// </div>
 	)
 }
