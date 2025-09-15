@@ -6,7 +6,6 @@ const Order = require('../models/order.model');
 exports.handleWebhook = async (req, res, next) => {
     try {
         const payload = req.body;
-        // Save raw payload for audit
 
         const log = new WebhookLog({ rawPayload: payload });
         await log.save();
@@ -18,14 +17,12 @@ exports.handleWebhook = async (req, res, next) => {
             return res.status(400).json({ message: 'Missing order_info' });
         }
 
-        // parse order_id. You said "order_id": "collect_id/transaction_id"
-
         let collectIdStr = payload.order_info.order_id;
-        
+
+        // try by custom_order_id
 
         let order = null;
         if (collectIdStr) {
-            // try by custom_order_id
             order = await Order.findOne({ custom_order_id: collectIdStr });
             if (!order) {
                 const mongoose = require('mongoose');

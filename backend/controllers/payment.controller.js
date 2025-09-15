@@ -55,7 +55,6 @@ exports.createPayment = async (req, res, next) => {
         console.log("Payment API called");
 
         // Extract payment url
-        // const paymentUrl = resp.payment_url || resp.redirect_url || resp.data?.payment_url;
 
         const paymentUrl = resp.collect_request_url || resp.payment_url || resp.redirect_url;
 
