@@ -4,6 +4,4 @@ const webhookCtrl = require('../controllers/webhook.controller');
 
 router.post('/', webhookCtrl.updateTransactionStatus);
 
-// router.post("/webhook/payment", webhookCtrl.paymentWebhook);     /* no need */
-
 module.exports = router;
