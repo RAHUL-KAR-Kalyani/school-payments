@@ -20,8 +20,8 @@ function useQueryState(defaults) {
 }
 
 export default function Dashboard() {
-    
-    
+
+
     const [schoolId, setSchoolId] = useState('');
     const [copied, setCopied] = useState(false);
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function Dashboard() {
     const limit = parseInt(params.limit || '10');
     const sort = params.sort || 'payment_time';
     const order = params.order || 'desc';
-    
+
     useEffect(() => {
         // backend params
         const apiParams = {
@@ -48,19 +48,19 @@ export default function Dashboard() {
         if (to) apiParams.to = to;
         dispatch(fetchTransactions(apiParams));
     }, [dispatch, page, limit, sort, order, localStatus, schoolIds, from, to]);
-    
+
     // apply btn
     const onApplyFilters = () => {
         setParams({ status: localStatus.join(','), schools: schoolIds.join(','), from, to, page: 1 });
     };
-    
+
     // clear btn
     const onClear = () => {
         setLocalStatus([]); setSchoolIds([]); setFrom(''); setTo('');
         setParams({});
         setSchoolId('');
     };
-    
+
     // search btn
     const search = () => {
         console.log("clicked button")
@@ -73,7 +73,7 @@ export default function Dashboard() {
     const rows = tx.list || [];
 
 
-    
+
     const [sortConfig, setSortConfig] = useState({
         key: "createdAt",
         direction: "asc",
@@ -139,17 +139,18 @@ export default function Dashboard() {
 
             <div className="p-4 rounded mb-4">
                 <div className="flex flex-cols-3 gap-2 w-full items-center justify-start">
-                    <div className={`block text-sm rounded ${dark?'bg-neutral-300 text-black':'bg-gray-300 text-black'}`}>
+                    <div className={`block text-sm rounded ${dark ? 'bg-neutral-300 text-black' : 'bg-gray-300 text-black'}`}>
+                        <input value={schoolId} onChange={e => setSchoolId(e.target.value)} placeholder="Enter school id" className="p-2 rounded" />
+                    </div>
+                    <div className={`block text-sm rounded ${dark ? 'bg-neutral-300 text-black' : 'bg-gray-300 text-black'}`}>
                         <input value={localStatus.join(',')} onChange={e => setLocalStatus(e.target.value.split(',').map(s => s.trim()).filter(Boolean))} className="w-full p-2 rounded" placeholder="Status" />
                     </div>
-                    <div className={`block text-sm rounded ${dark?'bg-neutral-300 text-black':'bg-gray-300 text-black'}`}>
-                        <input value={schoolId} onChange={e => setSchoolId(e.target.value)} placeholder="Enter school id" className="p-2 rounded" />
-                    </div>                    
+
                 </div>
 
                 <div className="flex gap-2 mt-3">
-                    <button onClick={onApplyFilters} className="px-3 py-1 bg-blue-600 text-white rounded">Apply</button>
                     <button onClick={search} className="px-3 py-1 bg-blue-600 text-white rounded">Search</button>
+                    <button onClick={onApplyFilters} className="px-3 py-1 bg-blue-600 text-white rounded">Apply for status</button>
                     <button onClick={onClear} className="px-3 py-1 bg-gray-300 rounded">Clear</button>
                 </div>
             </div>
@@ -209,7 +210,7 @@ export default function Dashboard() {
                                                 }
                                             }>
                                             <FiCopy size={18} />
-                                        </button>                                        
+                                        </button>
                                     </span>
                                 </td>
                                 <td className='ps-0'>{r.school_id}</td>
@@ -240,8 +241,8 @@ export default function Dashboard() {
             <div className="flex items-center justify-between mt-4">
                 <div>Showing {rows.length} of {tx.total}</div>
                 <div className="space-x-2">
-                    <button onClick={() => setParams({ page: Math.max(1, page - 1) })} className={`px-3 py-1 bg-gray-200 rounded ${dark?'bg-neutral-300 text-black':'bg-gray-400 text-black'}`}>Prev</button>
-                    <button onClick={() => setParams({ page: page + 1 })} className={`px-3 py-1 bg-gray-200 rounded ${dark?'bg-neutral-300 text-black':'bg-gray-400 text-black'}`}>Next</button>
+                    <button onClick={() => setParams({ page: Math.max(1, page - 1) })} className={`px-3 py-1 bg-gray-200 rounded ${dark ? 'bg-neutral-300 text-black' : 'bg-gray-400 text-black'}`}>Prev</button>
+                    <button onClick={() => setParams({ page: page + 1 })} className={`px-3 py-1 bg-gray-200 rounded ${dark ? 'bg-neutral-300 text-black' : 'bg-gray-400 text-black'}`}>Next</button>
                 </div>
             </div>
         </div>

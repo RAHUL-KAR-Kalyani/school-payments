@@ -8,6 +8,9 @@ async function start() {
     try {
         await mongoose.connect(config.mongoUri, {});
         console.log('MongoDB connected');
+        app.get('/', (req, res) => {
+            return res.send('Server is running...........');
+        });
         app.listen(config.port, () => {
             console.log(`Server OK. http://localhost:${config.port}/`);
         });
