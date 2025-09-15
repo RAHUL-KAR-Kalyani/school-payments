@@ -42,11 +42,6 @@ export default function Header() {
                         {!dark ? 'Dark' : 'Light'}
                     </button>
 
-                    {
-                        /* <button onClick={logout} className="px-3 py-1 rounded bg-red-500 text-white">{token ? 'Logout' : 'Login'}</button>
-                        <button onClick={()=>handleSignup()} className="px-3 py-1 rounded bg-red-500 text-white">{!token?'Signup':'' }</button> */
-                    }
-
                     {token ? (
                         <button onClick={handleLogout} className="px-3 py-1 rounded bg-red-500 text-white">
                             Logout
