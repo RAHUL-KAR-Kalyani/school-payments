@@ -5,15 +5,7 @@ const initialDark = localStorage.getItem('dark') === 'true';
 const slice = createSlice({
     name: 'ui',
     initialState: { dark: initialDark },
-    reducers: {
-        // toggleDark(state) {
-        //     state.dark = !state.dark;
-        //     localStorage.setItem('dark', state.dark);
-        // },
-        // setDark(state, action) {
-        //     state.dark = action.payload;
-        //     localStorage.setItem('dark', state.dark);
-        // }
+    reducers: {        
         toggleDark(state) {
             state.dark = !state.dark;
             localStorage.setItem('dark', state.dark);
