@@ -10,7 +10,7 @@ const transactionRoutes = require('./routes/transaction.routes');
 const app = express();
 
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://school-payment-frontend-r80f.onrender.com",
     credentials: true
 }));
 app.use(express.json());
