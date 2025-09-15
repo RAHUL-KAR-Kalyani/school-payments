@@ -5,13 +5,13 @@ import { fetchTransactions, fetchTransactionsBySchool } from '../store/transacti
 import { FiCopy } from 'react-icons/fi';
 import { FaSort } from "react-icons/fa";
 
-// import dayjs from 'dayjs'
 
 function useQueryState(defaults) {
     const [searchParams, setSearchParams] = useSearchParams();
     const params = Object.fromEntries(searchParams.entries());
     const set = (obj) => {
         const next = { ...params, ...obj };
+        
         // remove null/empty
         Object.keys(next).forEach(k => (next[k] === undefined || next[k] === null || next[k] === '') && delete next[k]);
         setSearchParams(next);
